@@ -1,4 +1,4 @@
-package com.example.level2;
+package com.example.level3;
 
 public class MenuItem {
   private String name; // 메뉴 이름 필드
@@ -7,10 +7,10 @@ public class MenuItem {
 
 
 
-  public MenuItem(String name, int cost, String ex){
-      this.name = name;
-      this.cost = cost;
-      this.ex = ex;
+  MenuItem(String name, int cost, String ex){
+    this.name = name;
+    this.cost = cost;
+    this.ex = ex;
 
   }
 
@@ -25,4 +25,3 @@ public class MenuItem {
     return ex;
   }
 }
-

@@ -41,6 +41,8 @@ public class Main {
             menuItems.get(num-1).getName(),
             menuItems.get(num-1).getCost() / 1000.0,
             menuItems.get(num-1).getEx());
+      } else{
+        System.out.println("입력범위를 넘었습니다.");
       }
       }
       }
