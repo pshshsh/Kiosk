@@ -1,4 +1,4 @@
-package com.example.level3;
+package com.example.level4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Main {
     menuItems.add(hamburger);
     Kiosk kiosk = new Kiosk(menuItems);
     kiosk.start();
-    }
   }
+}
 
 

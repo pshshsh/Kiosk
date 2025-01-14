@@ -1,4 +1,4 @@
-package com.example.level3;
+package com.example.level4;
 
 public class MenuItem {
   private String name; // 메뉴 이름 필드

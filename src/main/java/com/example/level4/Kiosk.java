@@ -1,6 +1,6 @@
 //main에서 관리하던 전체 순서 제어를 Kiosk 클래스를 통해 관리
 
-package com.example.level3;
+package com.example.level4;
 
 import java.util.List;
 import java.util.Scanner;
