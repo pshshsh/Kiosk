@@ -1,49 +1,66 @@
-//main에서 관리하던 전체 순서 제어를 Kiosk 클래스를 통해 관리
-
 package com.example.level4;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Kiosk {
-  private List<MenuItem> menuItems; //메뉴아이템 관리하는 리스트
+  private List<Menu> menus; // menu 객체들의 목록 저장 필드
 
-  public Kiosk(List<MenuItem> menuItems) {// MenuItem 객체를 저장하는 List타입을 받아라
-    this.menuItems = menuItems;
-  }  // List<MeniItem> menuItems을 Kiosk 클래스 생성자를 통해 값을 할당
+  public Kiosk(List<Menu> menus) { // 생성자
+    this.menus = menus; // 전달받은 menus 리스트를 Kiosk의 menus 필드에 저장
+  }
 
-  //키오스크 프로그램 시작 메서드
+  // 키오스크 프로그램 시작 메서드
   public void start() {
     Scanner sc = new Scanner(System.in);
-    int num;
-    while (true) {
-      System.out.println("[ SHAKESHACK MENU ]");
+    int num ;
+    int num2 ;
 
-      for (int i = 0; i < menuItems.size(); i++) {
-        System.out.printf("%d. %s | W %.1f | %s%n",
-            i + 1,
-            menuItems.get(i).getName(),
-            menuItems.get(i).getCost() / 1000.0,
-            menuItems.get(i).getEx());
+    while (true) {
+      // 메인 메뉴 출력
+      System.out.println("[ MAIN MENU ]");
+      for (int i = 0; i < menus.size(); i++) {
+        System.out.printf("%d. %s%n", i + 1, menus.get(i).getCategoryName());
       }
       System.out.println("0. 종료");
-      System.out.println("번호를 입력해주세요 : ");
-      num = sc.nextInt();
-      // 입력 받은 번호에 따른 메뉴얼 설정
-      if (num == 0) {   // 입력이 0일시에 프로그램 종료
-        System.out.println("프로그램을 종료합니다");
-        System.exit(0);//프로그램 종료
-      } else if (num >= 1 && num <= menuItems.size()) { // 입력이 1이상 최대 번호 이하 각번호의 맞는 정보표시
-        System.out.printf("메뉴 이름: %s, 가격: %.1f W, 설명: %s%n",
-            menuItems.get(num - 1).getName(),
-            menuItems.get(num - 1).getCost() / 1000.0,
-            menuItems.get(num - 1).getEx());
-      } else {
-        System.out.println("입력범위를 넘었습니다.");
-      }
-    }
+      System.out.print("번호를 입력해주세요: ");
 
+      num = sc.nextInt();
+      // 0입력시 종료 처리
+      if (num == 0) {
+        System.out.println("프로그램을 종료합니다.");
+        System.exit(0);
+      }
+      // 잘못 입력 시
+      if (num < 1 || num > menus.size()) {
+        System.out.println("입력범위를 넘었습니다 다시입력해주세요.");
+        continue;
+      }
+
+      // 선택한 카테고리 출력
+      System.out.printf("[ %s MENU ]%n", menus.get(num - 1).getCategoryName());
+      menus.get(num - 1).displayMenuItems();
+      System.out.println("0. 뒤로가기");
+
+      System.out.print("번호를 입력해주세요: ");
+      num2 = sc.nextInt();
+
+      // 뒤로가기 처리
+      if (num2 == 0) {
+        continue;
+      }
+
+      // 잘못 입력 시
+      if (num2 < 1 || num2 > menus.get(num - 1).getMenuItems().size()) {
+        System.out.println("입력범위를 넘었습니다 다시입력해주세요.");
+        continue;
+      }
+
+      // 선택한 메뉴 출력
+      System.out.printf("선택한 메뉴: %s | W %.1f | %s%n",
+          menus.get(num - 1).getMenuItems().get(num2 - 1).getName(),
+          menus.get(num - 1).getMenuItems().get(num2 - 1).getCost() / 1000.0,
+          menus.get(num - 1).getMenuItems().get(num2 - 1).getEx());
+    }
   }
 }
-
-
