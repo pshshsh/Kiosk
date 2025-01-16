@@ -15,10 +15,10 @@ public class Kiosk {
   //키오스크 프로그램 시작 메서드
   public void start() {
     Scanner sc = new Scanner(System.in);
-    int num;
+    int num; // 사용자 입력 저장 변수
     while (true) {
+      // 메뉴 출력
       System.out.println("[ SHAKESHACK MENU ]");
-
       for (int i = 0; i < menuItems.size(); i++) {
         System.out.printf("%d. %s | W %.1f | %s%n",
             i + 1,

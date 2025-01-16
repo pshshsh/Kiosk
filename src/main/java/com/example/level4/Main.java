@@ -2,7 +2,7 @@ package com.example.level4;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class Main {
   public static void main(String[] args) {
@@ -24,13 +24,13 @@ public class Main {
     dessertsMenu.addMenuItems(new MenuItem("cake",18000, "달달한 초코 케이크"));
     dessertsMenu.addMenuItems(new MenuItem("ice cream",2000, "아이스크림"));
     dessertsMenu.addMenuItems(new MenuItem("pizza",2000, "피자"));
-
+    //메뉴 리스트 생성 및 추가
     List<Menu> menus = new ArrayList<>();
     menus.add(burgerMenu);
     menus.add(drinkMenu);
     menus.add(dessertsMenu); //메뉴를 리스트에 추가
 
-
+    // kiosk 객체 생성 및 실행
     Kiosk kiosk = new Kiosk(menus); // menus 리스트를 Kiost 클래스 생성자에 전달
     kiosk.start();
   }
