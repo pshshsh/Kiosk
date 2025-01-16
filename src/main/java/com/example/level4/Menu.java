@@ -15,10 +15,18 @@ public class Menu {
   public String getCategoryName() {
     return categoryName;
   }
+  public void setCategoryName(String categoryName) {
+    this.categoryName = categoryName;
+  }
+
   //메뉴아이템 추가
   public void addMenuItems(MenuItem menuItem){
     menuItems.add(menuItem);
   }
+  public void setMenuItems(List<MenuItem> menuItems) {
+    this.menuItems = menuItems;
+  }
+
   //menuItems 리스트 반환
   public List<MenuItem> getMenuItems() {
     return menuItems;
