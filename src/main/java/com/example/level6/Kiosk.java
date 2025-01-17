@@ -1,11 +1,12 @@
 package com.example.level6;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
 public class Kiosk {
   private List<Menu> menus;// menu 객체들의 목록 저장 필드
-  private Cart cart; // cart 객체 저장 필드
+  private final Cart cart; // cart 객체 저장 필드
 
   public Kiosk(List<Menu> menus) { // 생성자
 
@@ -35,7 +36,7 @@ public class Kiosk {
       }
       System.out.println("0. 종료");
 
-      if(cart.isEmptyCart() == false){
+      if(!cart.isEmptyCart()){
         System.out.println("[ ORDER MENU ]");
         System.out.println("4. Orders    | 장바구니를 확인 후 주문합니다.");
         System.out.println("5. Cancel    | 진행중인 주문을 취소합니다.");
@@ -63,7 +64,29 @@ public class Kiosk {
         System.out.print("번호를 입력해주세요: ");
         int num3 = sc.nextInt();
         if (num3 == 1) {
-          System.out.println("주문이 완료되었습니다. 금액은 W " + cart.totalPrice() + " 입니다." );
+          System.out.println("할인 정보를 입력해주세요.");
+          System.out.println("1. 국가유공자 : 10%");
+          System.out.println("2. 군인 : 5%");
+          System.out.println("3. 학생 : 3%");
+          System.out.println("4. 일반 : 0%");
+          int num4 = sc.nextInt();
+          Job selectJob = Job.GENERAL;
+          switch (num4){
+            case 1 :
+              selectJob = Job.VETERAN;
+              break;
+              case 2 :
+                selectJob = Job.SOLDIER;
+                break;
+            case 3 :
+              selectJob = Job.STUDENT;
+              break;
+              case 4 :
+                selectJob = Job.GENERAL;
+                break;
+          }
+          System.out.println("주문이 완료되었습니다. 금액은 W" + (cart.totalPrice()*(1-selectJob.getDiscountRate()))+ "입니다." );
+
           cart.clearCart(); // 장바구니 초기화
         } else {
           System.out.println("메뉴판으로 돌아갑니다.");
@@ -108,12 +131,13 @@ public class Kiosk {
       int num3 = sc.nextInt();
       // 1.확인을 누르면 나오는 메뉴
       if(num3 == 1){
+
         System.out.println( menus.get(num - 1).getMenuItems().get(num2 - 1).getName() + "이 장바구니에 추가되었습니다. ");
         cart.addCart(menus.get(num - 1).getMenuItems().get(num2 - 1));
       continue;
       }
       // 2. 취소를 누르면 다시 메뉴판으로 돌아가도록 함
-      if(num == 2){
+      if(num3 == 2){
         System.out.println("메뉴판으로 돌아갑니다");
         continue;
       }
